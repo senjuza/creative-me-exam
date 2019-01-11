@@ -8,7 +8,10 @@ import java.util.List;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.PropertySource;
+import org.springframework.core.env.Environment;
 import org.springframework.http.ResponseEntity;
 import org.springframework.http.client.BufferingClientHttpRequestFactory;
 import org.springframework.http.client.ClientHttpRequestInterceptor;
@@ -32,12 +35,16 @@ import model.resp.RespData;
 import util.LoggingRequestInterceptor;
 import model.Character;
 
+@PropertySource("classpath:gateway.properties")
 @RestController
 public class WebController {
 
 	final static Logger log = LoggerFactory.getLogger(WebController.class);
 	ObjectMapper mapper = new ObjectMapper();
 
+	@Autowired
+	private Environment env;
+	
 	@RequestMapping("/")
 	public ModelAndView  index() {
 		 
@@ -57,7 +64,7 @@ public class WebController {
 		rt.setInterceptors(ris);
 		rt.setRequestFactory(new BufferingClientHttpRequestFactory(new SimpleClientHttpRequestFactory()));
 
-		String fooResourceUrl = "https://rickandmortyapi.com/api/character/?";
+		String fooResourceUrl = env.getProperty("gateway.url");
 
 		//mapping search parameter
 		if(searchParam.calculatePage()>1) {
@@ -112,7 +119,7 @@ public class WebController {
 			data.add(character.getSpecies());
 			data.add(character.getGender());
 			data.add(character.getOrigin().getName());
-			data.add("");
+			data.add(character.getLocation().getName());
 
 			respData.getData().add(data);
 		}

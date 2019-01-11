@@ -12,6 +12,7 @@ public class Character {
 	private String gender;
 	private String image;
 	private Origin origin;
+	private Location location;
 	
 	
 	public int getId() {
@@ -56,12 +57,19 @@ public class Character {
 	public void setOrigin(Origin origin) {
 		this.origin = origin;
 	}
-	
+	public Location getLocation() {
+		return location;
+	}
+	public void setLocation(Location location) {
+		this.location = location;
+	}
 	@Override
 	public String toString() {
 		return "Character [id=" + id + ", name=" + name + ", status=" + status + ", species=" + species + ", gender="
-				+ gender + ", image=" + image + ", origin=" + origin + "]";
+				+ gender + ", image=" + image + ", origin=" + origin + ", location=" + location + "]";
 	}
+	
+	
 	
 	
 

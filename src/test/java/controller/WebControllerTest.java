@@ -1,4 +1,4 @@
-package hello;
+package controller;
 
 import static org.hamcrest.Matchers.equalTo;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
@@ -23,9 +23,14 @@ public class WebControllerTest {
     private MockMvc mvc;
 
     @Test
-    public void getHello() throws Exception {
-        mvc.perform(MockMvcRequestBuilders.get("/").accept(MediaType.APPLICATION_JSON))
-                .andExpect(status().isOk())
-                .andExpect(content().string(equalTo("Greetings from Spring Boot!")));
+    public void testAPI() throws Exception {
+        mvc.perform(MockMvcRequestBuilders.post("/data").accept(MediaType.APPLICATION_JSON))
+                .andExpect(status().isOk());
+    }
+    
+    @Test
+    public void testHttp() throws Exception {
+        mvc.perform(MockMvcRequestBuilders.get("/index.html").accept(MediaType.APPLICATION_JSON))
+                .andExpect(status().isOk());
     }
 }
