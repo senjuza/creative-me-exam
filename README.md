@@ -10,8 +10,12 @@ for creative me company exam.
  - run project
  - open browser for result -> http://localhost:8080/index.html
 
+## Examination
+
+ - https://github.com/creative-me-thailand/assignment
+ 
 ## Online result example
 
- - https://creative-me-exam.herokuapp.com/index.html
+ - https://creative-me-exam.herokuapp.com/index.html 
 
 
